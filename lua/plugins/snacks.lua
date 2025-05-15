@@ -1,5 +1,4 @@
 return {
-  -- HACK: docs @ https://github.com/folke/snacks.nvim/blob/main/docs
   {
     "folke/snacks.nvim",
     priority = 1000,
@@ -31,7 +30,6 @@ return {
         height = 0.8,
         border = "rounded",
       },
-      -- HACK: read picker docs @ https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
       picker = {
         enabled = true,
         matchers = {

@@ -40,7 +40,9 @@ return {
         lua = { "stylua" },
         python = { "black" },
         markdown = { "prettier" },
+        cpp = { "clangd" },
         ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
+        cpp = { "clangd" },
       },
       format_on_save = {
         lsp_fallback = true,

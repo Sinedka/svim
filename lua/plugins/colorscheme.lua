@@ -1,5 +1,8 @@
 return {
-  -- NOTE : tokyonight
+  -- NOTE :
+  -- ╭────────────╮
+  -- │ tokyonight │
+  -- ╰────────────╯
   {
     "sinedka/tokyonight.nvim",
     lazy = false,
@@ -29,7 +32,6 @@ return {
         --- function will be called with a ColorScheme table
         on_colors = function(colors)
           -- colors.hint = colors.orange
-          -- colors.error = "#ff0000"
           colors.comment = "#6c78d0"
         end,
 
@@ -41,41 +43,28 @@ return {
 
         ---@type table<string, boolean|{enabled:boolean}>
         plugins = {
-          -- enable all plugins when not using lazy.nvim
-          -- set to false to manually enable/disable plugins
           all = package.loaded.lazy == nil,
-          -- uses your plugin manager to automatically enable needed plugins
-          -- currently only lazy.nvim is supported
           auto = true,
-
-          -- add any plugins here that you want to enable
-          -- for all possible plugins, see:
-          --   * https://github.com/folke/tokyonight.nvim/tree/main/lua/tokyonight/groups
-          -- telescope = true,
-          -- bufferline = false,
         },
       }
       vim.cmd [[colorscheme tokyonight]]
+      -- local c = require("tokyonight.colors").setup()
 
-      -- vim.cmd [[
-      --   highlight BufferLineFill guibg=NONE
-      --   highlight BufferLineBackground guibg=NONE
-      --   highlight BufferLineTab guibg=NONE
-      --   highlight BufferLineTabSelected guibg=NONE
-      --   highlight BufferLineTabClose guibg=NONE
-      --   highlight BufferLineSeparator guibg=NONE
-      --   highlight BufferLineSeparatorSelected guibg=NONE
-      --   highlight BufferLineSeparatorVisible guibg=NONE
-      -- ]]
-      -- vim.api.nvim_set_hl(0, "BufferLineFill", { fg = "#ffffff" })
-      --
-      -- vim.api.nvim_set_hl(0, "BufferLineBackground", { fg = "#ffffff" })
-      --
-      -- vim.api.nvim_set_hl(0, "BufferLineBufferSelected", { bold = true })
-      --
-      -- vim.api.nvim_set_hl(0, "BufferLineSeparator", { bg = "NONE", fg = "NONE" })
-      --
-      -- vim.api.nvim_set_hl(0, "BufferLineSeparatorSelected", {})
+      local highlights = {
+        -- Ecovim Colors
+        EcovimPrimary = { fg = "#488dff" },
+        EcovimSecondary = { fg = "#FFA630" },
+        EcovimPrimaryBold = { bold = true, fg = "#488DFF" },
+        EcovimSecondaryBold = { bold = true, fg = "#FFA630" },
+        EcovimHeader = { bold = true, fg = "#488DFF" },
+        EcovimHeaderInfo = { bold = true, fg = "#FFA630" },
+        EcovimFooter = { bold = true, fg = "#FFA630" },
+        EcovimNvimTreeTitle = { bold = true, fg = "#FFA630", bg = "#16161e" },
+      }
+
+      for group, hl in pairs(highlights) do
+        vim.api.nvim_set_hl(0, group, hl)
+      end
     end,
   },
 }
