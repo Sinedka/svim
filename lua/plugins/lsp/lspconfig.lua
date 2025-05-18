@@ -111,7 +111,19 @@ return {
     local servers = {
       asm_lsp = {},
       clangd = {},
-
+      tailwindcss = {
+        root_dir = function(...)
+          return require("lspconfig.util").root_pattern ".git"(...)
+        end,
+      },
+      html = {},
+      yamlls = {
+        settings = {
+          yaml = {
+            keyOrdering = false,
+          },
+        },
+      },
       lua_ls = {
         -- cmd = { ... },
         -- filetypes = { ... },
@@ -144,8 +156,29 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       "stylua", -- Used to format Lua code
+      "selene",
+      "shellcheck",
+      "shfmt",
+      "tailwindcss-language-server",
+      "typescript-language-server",
+      "css-lsp",
     })
     require("mason-tool-installer").setup { ensure_installed = ensure_installed }
+
+    local lspconfig = require "lspconfig"
+
+    lspconfig.ts_ls.setup {
+      filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" }, -- важно!
+      -- settings = {
+      --   typescript = {
+      --     inlayHints = {
+      --       includeInlayParameterNameHints = "all",
+      --       includeInlayVariableTypeHints = true,
+      --       includeInlayFunctionLikeReturnTypeHints = true,
+      --     },
+      --   },
+      -- },
+    }
 
     require("mason-lspconfig").setup {
       ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)

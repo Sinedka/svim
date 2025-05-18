@@ -26,6 +26,7 @@ map({ "n", "v" }, "<leader>d", [["_d]])
 
 map("n", "<Esc>", ":nohl<CR>", { desc = "Clear search hl", silent = true })
 
+map("t", "<Esc>", "<c-\\><c-n>")
 -- Unmaps Q in normal mode
 -- map("n", "Q", "<nop>")
 
